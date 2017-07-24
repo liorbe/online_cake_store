@@ -1,0 +1,168 @@
+<div id="content" >
+   <div ng-controller="registerController as registerCtrl">
+        <div id="account" >
+            <div>
+                <form name="registrationForm" ng-submit="registerCtrl.register(registrationForm.$valid)" role="form" novalidate>
+                    <span>SIGN-UP</span>
+                    <table style="width: 400px">
+                        <tr>
+                            <td><label for="firstName">First Name</label></td>
+                            <td><input type="text" id="firstName" ng-model="registerCtrl.user.first_name"
+                                       ng-required="true"
+                                       ng-pattern="/^[a-zA-Z]*$/"
+                                       name="firstName"> </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.firstName.$error.required && !registrationForm.firstName.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.firstName.$invalid && !registrationForm.firstName.$error.required && !registrationForm.firstName.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="lastName" >Last Name</label></td>
+                            <td><input type="text" id="lastName" ng-required="true" ng-pattern="/^[a-zA-Z]*$/"
+                                       name="lastName" ng-model="registerCtrl.user.last_name"/></td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.lastName.$error.required && !registrationForm.lastName.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.lastName.$invalid && !registrationForm.lastName.$error.required && !registrationForm.lastName.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="username">Username</label></td>
+                            <td><input type="text" id="username" ng-model="registerCtrl.user.username"
+                                       ng-required="true"
+                                       ng-pattern="/^[a-zA-Z]*$/"
+                                       name="username" maxlength="8" minlength="3">
+                           </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.username.$error.required && !registrationForm.username.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.username.$invalid && !registrationForm.username.$error.required && !registrationForm.username.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">E-mail</label></td>
+                            <td><input type="email" id="email" ng-required="true" name="email" ng-model="registerCtrl.user.mail"/></td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.email.$error.required && !registrationForm.email.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.email.$error.email && !registrationForm.email.$error.required && !registrationForm.email.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="password">Password</label></td>
+                            <td><input type="password" id="password"
+                                       ng-model="registerCtrl.user.password"
+                                       maxlength="10"
+                                       minlength="5"
+                                       ng-required="true"
+                                       ng-pattern="/^[a-zA-Z0-9_]*$/"
+                                        name="password"></td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.password.$error.required && !registrationForm.password.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.password.$invalid && !registrationForm.password.$error.required && !registrationForm.password.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Country</label></td>
+                            <td><select ng-model="registerCtrl.selectedCountry" ng-options="country for country in countries">
+                                {{country}}
+                            </select></td>
+                        </tr>
+                        <tr>
+                            <td><label for="city">City</label></td>
+                            <td><input type="text" id="city"
+                                       ng-pattern="/^[a-zA-Z]*$/"
+                                       ng-required="true"
+                                       ng-model="registerCtrl.user.city"
+                                       name = "city"
+                            /></td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.city.$error.required && !registrationForm.city.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.city.$invalid && !registrationForm.city.$error.required && !registrationForm.city.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="phone">Phone</label></td>
+                            <td><input type="text" id="phone" name="phone" ng-required="true" ng-model="registerCtrl.user.phone" ng-pattern="/^[0-9]+$/" /></td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.phone.$error.required && !registrationForm.phone.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.phone.$invalid && !registrationForm.phone.$error.required && !registrationForm.phone.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="cellular">Cellular</label></td>
+                            <td><input type="text" id="cellular" name="cellular" ng-required="true" ng-pattern="/^[0-9]+$/" ng-model="registerCtrl.user.cellular"/></td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.cellular.$error.required && !registrationForm.cellular.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.cellular.$invalid && !registrationForm.cellular.$error.required && !registrationForm.cellular.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="credit">credit card number</label></td>
+                            <td><input type="text" id="credit" name="credit"  ng-required="true" ng-pattern="/^[0-9]+$/" ng-model="registerCtrl.user.credit_card" /></td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.credit.$error.required && !registrationForm.credit.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.credit.$invalid && !registrationForm.credit.$error.required && !registrationForm.credit.$pristine">
+                                invalid
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><label for="address">address</label></td>
+                            <td><input type="text" id="address" name="address" ng-required="true" ng-model="registerCtrl.user.address"/></td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.address.$error.required && !registrationForm.address.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.address.$invalid && !registrationForm.address.$error.required && !registrationForm.address.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>categories</label></td>
+                            <td> <select style="width: 100px; height: 50px;" multiple ng-model="registerCtrl.selectedCategories" ng-options="category.category_name for category in registerCtrl.categories" )>
+                                {{category.category_name | uppercase}}
+                            </select></td>
+                        </tr>
+                        <tr>
+                            <td><label for="primarySchool">What is your primary school name?</label></td>
+                            <td><input type="text" id="primarySchool" name="primarySchool" ng-required="true" ng-model="registerCtrl.user.primary_school" /></td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.primarySchool.$error.required && !registrationForm.primarySchool.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.primarySchool.$invalid && !registrationForm.primarySchool.$error.required && !registrationForm.primarySchool.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="motherSurname">what is your mother surname before marrige?</label></td>
+                            <td><input type="text" id="motherSurname" name="motherSurname" ng-required="true" ng-model="registerCtrl.user.mother_surname"/></td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.motherSurname.$error.required && !registrationForm.motherSurname.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="registrationForm.motherSurname.$invalid && !registrationForm.motherSurname.$error.required && !registrationForm.motherSurname.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Sign-up"  class="submitbtn" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

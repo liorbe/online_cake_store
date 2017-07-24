@@ -1,0 +1,93 @@
+<div id="content">
+    <div ng-controller="loginController as loginCtrl">
+        <div id="account">
+            <div>
+                <form name="loginForm" ng-submit="loginCtrl.login(loginForm.$valid)"role="form" novalidate>
+                    <span>SIGN-IN</span>
+                    <table>
+                        <tr>
+                            <td><label>Username</label></td>
+                            <td><input type="text" ng-required="true" name="username" ng-model="loginCtrl.username"/></td>
+                            <td style="color: red; font-weight: bold" ng-show="loginForm.username.$error.required && !loginForm.username.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="loginForm.username.$invalid && !loginForm.username.$error.required && !loginForm.username.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Password</label></td>
+                            <td><input type="password"
+                                       ng-model="loginCtrl.password"
+                                       maxlength="10"
+                                       minlength="5"
+                                       ng-required="true"
+                                       name="password"></td>
+                            <td style="color: red; font-weight: bold" ng-show="loginForm.password.$error.required && !loginForm.password.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="loginForm.password.$invalid && !loginForm.password.$error.required && !loginForm.password.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                    </table>
+                        <!--<input ng-click="loginCtrl.login(loginForm.$valid)" type="submit" ng-disabled="loginForm.$invalid" value="Sign-In" class="submitbtn" />-->
+                    <input type="submit" value="Sign-In" class="submitbtn" />
+                </form>
+            </div>
+        </div>
+
+<div style="text-align: center" ng-show="!loginCtrl.retrivePass">
+    Forgot Your Password? </td>
+    <input ng-click="loginCtrl.retrivePassShow()"  value="restore"  class="retrive"/>
+</div>
+
+        <div ng-show="loginCtrl.retrivePass" style="text-align: center">
+            <div>
+                <form name="retrivePass">
+                    <h2>Retrive Password</h2>
+                    <table style="text-align: center">
+                        <tr>
+                            <td><label>Username</label></td>
+                            <td><input type="text" ng-required="true" name="usernameToRetrive" ng-model="loginCtrl.usernameToRetrive"/></td>
+                            <td style="color: red; font-weight: bold" ng-show="retrivePass.usernameToRetrive.$error.required && !retrivePass.usernameToRetrive.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="retrivePass.usernameToRetrive.$invalid && !retrivePass.usernameToRetrive.$error.required && !retrivePass.usernameToRetrive.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="primarySchool">What is your primary school name?</label></td>
+                            <td><input type="text" id="primarySchool" name="primarySchool" ng-required="true" ng-model="loginCtrl.primary_school" /></td>
+                            <td style="color: red; font-weight: bold" ng-show="retrivePass.primarySchool.$error.required && !retrivePass.primarySchool.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="retrivePass.primarySchool.$invalid && !retrivePass.primarySchool.$error.required && !retrivePass.primarySchool.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="motherSurname">what is your mother surname before marrige?</label></td>
+                            <td><input type="text" id="motherSurname" name="motherSurname" ng-required="true" ng-model="loginCtrl.mother_surname"/></td>
+                            <td style="color: red; font-weight: bold" ng-show="retrivePass.motherSurname.$error.required && !retrivePass.motherSurname.$pristine">
+                                required
+                            </td>
+                            <td style="color: red; font-weight: bold" ng-show="retrivePass.motherSurname.$invalid && !retrivePass.motherSurname.$error.required && !retrivePass.motherSurname.$pristine">
+                                invalid
+                            </td>
+                        </tr>
+                    </table>
+                    <input ng-click="loginCtrl.retrivePassword()" value="restore" class="retrive" />
+                </form>
+            </div>
+        </div>
+
+        <div style="text-align: center" ng-show="loginCtrl.showPass">
+            <b> Your password is:  {{loginCtrl.pass}}</b>
+        </div>
+        <div style="text-align: center" ng-show="loginCtrl.showError">
+            <b>{{loginCtrl.error}}</b>
+        </div>
+    </div>
+</div>

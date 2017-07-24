@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>cake store</title>
+    <script  src="angularScripts/angular.js"></script>
+    <script src="app.js"></script>
+    <script type="text/javascript" src="angularScripts/angular-route.js"></script>
+    <script type=text/javascript src="controllers/productsController.js"></script>
+    <script type=text/javascript src="controllers/cartController.js"></script>
+    <script type=text/javascript src="controllers/ordersController.js"></script>
+    <script type=text/javascript src="controllers/registerController.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <script src="controllers/homeConroller.js"></script>
+
+    <script src="../assets/angular-modal-service.min.js"></script>
+
+    <script src="angularScripts/angular-local-storage.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" href="../css/modalcss.css">
+    <script src="controllers/loginController.js"></script>
+    <script src="../shared/userService.js"></script>
+    <script src="../shared/shoppingCartService.js"></script>
+
+</head>
+<body>
+<div ng-controller="mainController as mainCtrl"  >
+   <div  id="header">
+        <div>
+            <div>
+        <div id="logo">
+            <a href="#/"><img src="../assets/images/logo.gif" alt="Logo" /></a>
+        </div>
+                <div >
+                    <div>
+                        <p style="text-align: center"> Hello {{mainCtrl.userService.username}}</p>
+                        <p style="text-align: center" ng-show="mainCtrl.userService.isLoggedIn"> Last Login {{mainCtrl.userService.date}}</p>
+                        <a href="#/register" ng-show="!mainCtrl.userService.isLoggedIn">Register</a>
+                        <a href="#/login" class="last" ng-show="!mainCtrl.userService.isLoggedIn">Login</a>
+                        <a href="#/cart"    style="text-align: center" ng-show="mainCtrl.userService.isLoggedIn">
+
+                            <i class="material-icons">shopping_cart</i>
+                            <!--<span class="glyphicon glyphicon-shopping-cart">cart</span>-->
+                        </a>
+                        <a href="#/orders"  class="last"  style="text-align: center" ng-show="mainCtrl.userService.isLoggedIn">My Orders</a>
+                    </div>
+                </div>
+
+        </div>
+        <ul>
+            <li><a href="#/home">Home</a></li>
+            <li><a href="#/products">Products</a></li>
+            <li><a href="#/about">About us</a></li>
+        </ul>
+        </div>
+    </div>
+
+    <ng-view ></ng-view>
+</div>
+</body>
+</html>

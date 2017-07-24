@@ -1,0 +1,62 @@
+<div id="content" ng-controller="ordersController as ordersCtrl">
+    <br>
+    <div >
+        <h1 >orders</h1>
+        <table>
+            <tr>
+                <td> <h2>order number</h2></td>
+                <td> <h2>more details</h2></td>
+                <td> <h2>order date</h2></td>
+                <td> <h2>shipment date</h2></td>
+                <td> <h2>total amount</h2></td>
+
+            </tr>
+            <tr ng-repeat="order in ordersCtrl.orders ">
+                <td> <b>{{order.order_id}}</b></td>
+                <td> <a class="openModal" ng-click="ordersCtrl.show(order.order_id)">more details</a></td>
+                <td> {{order.order_date | date }}</td>
+                <td> {{order.shipment_date | date}}</td>
+                <td> {{order.total_amount }}</td>
+
+            </tr>
+        </table>
+
+        <br><br><br>
+
+    </div>
+
+</div>
+
+<!-- modal view -->
+<script type="text/ng-template" id="modal.html">
+    <div class="overlay" ng-show="display" >
+        <table align="center">
+            <tr>
+                <td> <h4>Name</h4> </td>
+                <td> <h4>Description</h4> </td>
+                <td> <h4>Shape</h4> </td>
+                <td> <h4>Weight</h4> </td>
+                <td> <h4>Price</h4> </td>
+
+            </tr>
+            <tr ng-repeat="current in cakes">
+                <td> <h1>{{current.cake_name}}</h1> </td>
+                <td> {{current.description}}</td>
+                <td> {{current.shape}}</td>
+                <td> {{current.weight}}</td>
+                <td> {{current.price| currency}}</td>
+
+            </tr>
+        </table>
+        </br>
+
+        <div style="text-align: center">
+            <img src={{current.picture_path}} align="middle">
+            </br>
+            </br>
+            <button ng-click="close()" >Close</button>
+        </div>
+
+    </div>
+    <div class="fade" ng-show="display" ng-click="close()"></div>
+</script>

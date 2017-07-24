@@ -1,0 +1,75 @@
+<div id="content" ng-controller="cartController as cartCtrl">
+<div >
+
+</div>
+<div >
+    <h1 >shopping cart</h1>
+    <table>
+       <tr>
+           <td colspan="2"> <h2>cake name</h2></td>
+           <td> <h2>shape</h2></td>
+           <td> <h2>amount</h2></td>
+           <td> <h2>price</h2></td>
+           <td> <h2>remove</h2></td>
+
+       </tr>
+        <tr ng-repeat="product in cartCtrl.cart | searchFilter:searchString">
+            <td> <b>{{product.cake_name}}</b></td>
+            <td> <a class="openModal" ng-click="cartCtrl.show(product)">more details</a></td>
+            <td> {{product.shape}}</td>
+            <td> {{product.amount}}</td>
+            <td> {{product.price | currency}}</td>
+            <td>  <a class="openModal" ng-click="cartCtrl.removeFromCart(product)">remove</a></td>
+
+        </tr>
+        <tr>
+            <td colspan="3"><b>Total</b></td>
+            <td><b> {{totalAmount}} </b> </td>
+            <td> <b>{{totalPrice | currency}}</b> </td>
+            <td> </td>
+
+        </tr>
+    </table>
+
+    <br><br><br>
+
+</div>
+
+</div>
+
+<!-- modal view -->
+<script type="text/ng-template" id="modal.html">
+    <div class="overlay" ng-show="display" >
+        <table align="center">
+            <tr>
+                <td> <h1>{{current.cake_name}}</h1> </td>
+            </tr>
+            <tr>
+                <td> <h4>Description:</h4> </td>
+                <td> {{current.description}}</td>
+            </tr>
+            <tr>
+                <td> <h4>Price:</h4> </td>
+                <td> {{current.price | currency}}</td>
+            </tr>
+            <tr>
+                <td> <h4>Shape:</h4> </td>
+                <td> {{current.shape}}</td>
+            </tr>
+            <tr>
+                <td> <h4>Weight: </h4> </td>
+                <td> {{current.weight}}</td>
+            </tr>
+        </table>
+        </br>
+
+        <div style="text-align: center">
+            <img src={{current.picture_path}} align="middle">
+            </br>
+            </br>
+            <button ng-click="close()" >Close</button>
+        </div>
+
+    </div>
+    <div class="fade" ng-show="display" ng-click="close()"></div>
+</script>

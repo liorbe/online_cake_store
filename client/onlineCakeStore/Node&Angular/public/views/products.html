@@ -1,0 +1,106 @@
+<!--products -->
+<div id="content"  ng-controller="productsController as productsCtrl">
+    <div >
+        <form action="#">
+            <table>
+                <tr> <!--search cakes by name-->
+                    <td> <input placeholder="search cakes by name" type="text" id="search" class="input" ng-model="searchString" maxlength="30" /></td>
+                <tr>
+                    <td>   <h4>Choose cake categoty: </h4></td>
+                    <td> <!--present cakes in category-->
+                        <select ng-model="productsCtrl.selectedCategory" ng-options="category.category_name for category in productsCtrl.categories" ng-change="productsCtrl.getProductsByCategory(productsCtrl.selectedCategory.category_id )">
+                            {{category.category_name | uppercase}}
+                        </select>
+                    </td>
+                </tr>
+                <tr> <!--sort cakes-->
+                    <td>  <h4>Sort cakes by: </h4> </td>
+                    <td>
+                        <select ng-model="sortCakes">
+                            <option value="+cake_name" >name - assending order </option>
+                            <option value="-cake_name" >name - dessending order </option>
+                            <option value="price" >price - assending order </option>
+                            <option value="-price" >price - dessending order </option>
+                        </select>
+                    </td>
+
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div > <!--show cakes according to selected filters and search-->
+        <h1 >{{productsCtrl.selectedCategory.category_name}}</h1>
+        <ul>
+            <li ng-repeat="product in productsCtrl.products | searchFilter:searchString | orderBy: sortCakes">
+                <div>
+                    <div>
+                        <h2>
+                            <a href="../index.html">{{product.cake_name}}</a>
+                        </h2>
+                        <p>{{product.description}}</p>
+                        <a class="openModal" ng-click="productsCtrl.show(product)">more details</a>
+                        <a class="openModal" ng-show="productsCtrl.userService.isLoggedIn" ng-click="productsCtrl.addToCart(product)">add to cart</a>
+                    </div>
+                    <a href="../index.html"><img src={{product.picture_path}} alt="Image" /></a>
+                </div>
+            </li>
+        </ul>
+    </div> <!--show recommended cakes for client if logged in-->
+    <div ng-show="productsCtrl.userService.isLoggedIn">
+        <h1>Recommanded Cakes</h1>
+        <ul>
+            <li ng-repeat="recProduct in productsCtrl.recommandedProducts">
+                <div>
+                    <div >
+                        <h2>
+                            <a href="../index.html">{{recProduct.cake_name}}</a>
+                        </h2>
+                        <p>{{recProduct.description}}</p>
+                        <a class="openModal" ng-click="productsCtrl.show(recProduct)">more details</a>
+                        <a class="openModal" ng-show="productsCtrl.userService.isLoggedIn" ng-click="productsCtrl.addToCart(recProduct)">add to cart</a>
+                    </div>
+                    <a href="../index.html"><img src={{recProduct.picture_path}} alt="Image" /></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<!-- modal view -->
+<script type="text/ng-template" id="modal.html">
+    <div class="overlay" ng-show="display" >
+        <table align="center">
+            <tr>
+                <td> <h1>{{current.cake_name}}</h1> </td>
+            </tr>
+            <tr>
+                <td> <h4>Description:</h4> </td>
+                <td> {{current.description}}</td>
+            </tr>
+            <tr>
+                <td> <h4>Price:</h4> </td>
+                <td> {{current.price | currency}}</td>
+            </tr>
+            <tr>
+                <td> <h4>Shape:</h4> </td>
+                <td> {{current.shape}}</td>
+            </tr>
+            <tr>
+                <td> <h4>Weight: </h4> </td>
+                <td> {{current.weight}}</td>
+            </tr>
+        </table>
+        </br>
+
+        <div style="text-align: center">
+            <img src={{current.picture_path}} align="middle">
+            </br>
+            </br>
+            <button ng-click="close()" >Close</button>
+        </div>
+
+    </div>
+    <div class="fade" ng-show="display" ng-click="close()"></div>
+</script>

@@ -1,0 +1,76 @@
+body {
+    background-color: white;
+}
+.container p{
+    color: pink;
+}
+.container a {
+    color: #AAAAAA;
+}
+.overlay {
+    position: fixed;
+    left: 30%;
+    top: 10%;
+    padding: 10px;
+    border: 1px solid #7c0d37;
+    background-color: white;
+    width: 40%;
+    height: 77%;
+    z-index: 100;
+    color: #7c0d37;
+}
+.overlay a, .nestedOverlay a {
+    color: #AAAAAA;
+}
+.fade {
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    background-color: white;
+    opacity: .8;
+    width: 100%;
+    height: 100%;
+    z-index: 90;
+}
+.message{
+    font-size: 48px;
+}
+.openModal{
+    background: url(../assets/images/sprite-buttons.gif) no-repeat 0 -451px;
+    color: #84284d;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+    width: 120px;
+    /*
+    border-radius: 3px;
+    padding: 4px;
+    border: 1px solid #7c0d37;
+    background-color: white;
+    box-shadow:3px 3px 4px rgba(0,0,0,0.5);*/
+    cursor: pointer;
+}
+.nestedOverlay {
+    position: fixed;
+    left: 25%;
+    top: 25%;
+    padding: 10px;
+    border: 1px solid #7c0d37;
+    background-color: white;
+    width: 50%;
+    height: 50%;
+    z-index: 200;
+    color: purple;
+}
+.nestedFade {
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    background-color: white;
+    opacity: .8;
+    width: 100%;
+    height: 100%;
+    z-index: 190;
+}
